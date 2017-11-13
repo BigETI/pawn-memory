@@ -24,6 +24,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="ManagedMemory.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\amx\amx.h">
@@ -41,7 +44,10 @@
     <ClInclude Include="SDK\plugincommon.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="p_mem_class_ctr.h">
+    <ClInclude Include="ManagedMemory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EMemoryResult.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
