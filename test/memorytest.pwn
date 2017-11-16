@@ -18,6 +18,15 @@ if (!(%0)) \
     return -1; \
 }
 
+PrintMemory(Pointer:pointer)
+{
+    print("[MEMORYTEST] Print memory:");
+    MEM_foreach(index : pointer)
+    {
+        printf("\t%d => %d", MEM_get_val(pointer, index));
+    }
+}
+
 // On filter script init
 public OnFilterScriptInit()
 {
@@ -42,6 +51,7 @@ public OnFilterScriptInit()
     for (new i; i < sizeof pointers; i++)
     {
         assertf(MEM_is_valid_ptr(pointers[i]), "[MEMORYTEST] pointers[%d] (0x%x) is not valid. Result: %d", _:(pointers[i]), i, _:MEM_get_last_result());
+        PrintMemory(pointers[i]);
     }
     assertf(pointers[3] != pointers[4], "[MEMORYTEST] pointers[4] (0x%x) is not a copy of pointers[3] (0x%x), instead a reference. Result: %d", _:(pointers[4]), _:(pointers[3]), _:MEM_get_last_result());
     print("[MEMORYTEST] Test 3");

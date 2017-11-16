@@ -8,8 +8,10 @@
 	#define AnyPointer						{UnmanagedPointer, ForeignPointer, Pointer}
 	#define MEM_struct						enum _:
 	#define MEM_SIZEOF_CELL					(4)
-	#define MEM_foreach%2(%0:%1)			for (new %1__size__ = MEM_get_size(%1), %0; (%0) < (%1__size__); %0++)
-	#define MEM_foreach_rev%2(%0:%1)		for (new %1__size__ = MEM_get_size(%1), %0 = (%1__size__) - 1; (%0) >= 0; %0--)
+	#define MEM_foreach_ex%2(%0:%1,%2)		for (new %2 = MEM_get_size(%1), %0; (%0) < (%2); %0++)
+	#define MEM_foreach_rev_ex%2(%0:%1,%2)	for (new %2 = MEM_get_size(%1), %0 = (%2) - 1; (%0) >= 0; %0--)
+	#define MEM_foreach%2(%0:%1)			MEM_foreach_ex%2(%0:%1,__size__)
+	#define MEM_foreach_rev%2(%0:%1)		MEM_foreach_rev_ex%2(%0:%1,__size__)
 	#define MEM_MACR_comp_ptr%2(%0,%1)		(ForeignPointer:(%0) + ForeignPointer:((%1) * MEM_MACR_SIZEOF_CELL))
 	#define MEM_MACR_increment_ptr%1(%0)	(ForeignPointer:(%0 += MEM_MACR_SIZEOF_CELL))
 	#define MEM_MACR_decrement_ptr%1(%0)	(ForeignPointer:(%0 -= MEM_MACR_SIZEOF_CELL))
