@@ -522,7 +522,7 @@ Cell size in bytes
 
 ### MEM_foreach
 #### Description
-Memory foreach
+A method to traverse through allocated memory
 #### Syntax
 ```C
 MEM_foreach(index : Pointer:pointer)
@@ -538,7 +538,7 @@ MEM_foreach(index : pointer)
 
 ### MEM_foreach_rev
 #### Description
-Memory foreach reverse
+A method to traverse through allocated memory in reverse
 #### Syntax
 ```C
 MEM_foreach_rev(index : Pointer:pointer)
@@ -549,6 +549,38 @@ new arr[10] = { 100, ... }, Pointer:pointer = MEM_new_arr(arr);
 MEM_foreach_rev(index : pointer)
 {
 	printf("Value at index %d: %d", index, MEM_get_val(pointer, index));
+}
+```
+
+### MEM_foreach_ex
+#### Description
+A method to traverse through allocated memory
+#### Syntax
+```C
+MEM_foreach_ex(index, size : Pointer:pointer)
+```
+#### Example
+```C
+new arr[10] = { 100, ... }, Pointer:pointer = MEM_new_arr(arr);
+MEM_foreach(index, size : pointer)
+{
+	printf("[%d] Value at index %d: %d", size, index, MEM_get_val(pointer, index));
+}
+```
+
+### MEM_foreach_rev_ex
+#### Description
+A method to traverse through allocated memory in reverse
+#### Syntax
+```C
+MEM_foreach_rev_ex(index, size : Pointer:pointer)
+```
+#### Example
+```C
+new arr[10] = { 100, ... }, Pointer:pointer = MEM_new_arr(arr);
+MEM_foreach_rev_ex(index, size : pointer)
+{
+	printf("[%d] Value at index %d: %d", size, index, MEM_get_val(pointer, index));
 }
 ```
 
@@ -593,4 +625,3 @@ ForeignPointer:MEM_MACR_decrement_ptr(AnyPointer:pointer)
 ```C
 new arr[2], Pointer:pointer = MEM_UM_get_addr(arr[1]), ForeignPointer:prev_pointer = MEM_MACR_decrement_ptr(pointer);
 ```
-
