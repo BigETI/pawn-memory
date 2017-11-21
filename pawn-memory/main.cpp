@@ -3,6 +3,7 @@
 */
 
 #include "ManagedMemory.h"
+#include <string.h>
 
 using namespace PAWNMemory;
 using namespace std;
