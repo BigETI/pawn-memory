@@ -1,7 +1,7 @@
 GPP = g++
 GCC = gcc
-OUTPUT = "./memory.so"
-CC_PARAMS =-std=c++14 -c -m32 -fPIC -O3 -w -DLINUX -I./SDK/amx/
+OUTPUT = "./pawn-memory.so"
+CC_PARAMS =-std=c++11 -c -m32 -fPIC -O3 -w -DLINUX -I./SDK/amx/
 
 all:
 	$(GCC) $(CC_PARAMS) ./SDK/amx/*.c
