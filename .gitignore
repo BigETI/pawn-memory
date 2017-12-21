@@ -298,3 +298,7 @@ __pycache__/
 SAMPLauncherNET/obj/Debug/SAMPLauncherNET.csproj.FileListAbsolute.txt
 ./SAMPLauncherNET/bin/
 ./SAMPLauncherNET/obj/
+
+# Pawn Package dependencies and compiled bytecode
+dependencies/
+*.amx

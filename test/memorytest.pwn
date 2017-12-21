@@ -28,7 +28,7 @@ PrintMemory(Pointer:pointer)
 }
 
 // On filter script init
-public OnFilterScriptInit()
+main()
 {
     new Pointer:pointers[5], EMemoryResult:result, arr[10] = { 100, ... }, arr_copy[sizeof arr], another_arr[sizeof arr] = { 200, ... }, sz, val, UnmanagedPointer:unmanaged_pointers[5], ForeignPointer:foreign_pointer;
     print("[MEMORYTEST] Test 1");
