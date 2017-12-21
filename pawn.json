@@ -1,0 +1,30 @@
+{
+    "user": "BigETI",
+    "repo": "pawn-memory",
+    "entry": "test/memorytest.pwn",
+    "output": "test/memorytest.amx",
+    "dependencies": ["Southclaws/samp-stdlib"],
+    "builds": [
+        {
+            "name": "test",
+            "includes": ["./include"]
+        }
+    ],
+    "runtime": {
+        "plugins": ["BigETI/pawn-memory"]
+    },
+    "resources": [
+        {
+            "name": "pawn-memory-linux-x86.zip",
+            "platform": "linux",
+            "archive": true,
+            "plugins": ["memory.so"]
+        },
+        {
+            "name": "pawn-memory-windows-x86.zip",
+            "platform": "windows",
+            "archive": true,
+            "plugins": ["plugins/pawn-memory.dll"]
+        }
+    ]
+}
