@@ -4,6 +4,7 @@
     "entry": "test/memorytest.pwn",
     "output": "test/memorytest.amx",
     "dependencies": ["Southclaws/samp-stdlib"],
+    "include_path": "include",
     "builds": [
         {
             "name": "test",
