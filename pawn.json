@@ -19,7 +19,7 @@
             "name": "pawn-memory-linux-x86.zip",
             "platform": "linux",
             "archive": true,
-            "plugins": ["memory.so"]
+            "plugins": ["plugins/debian-stretch/pawn-memory.so"]
         },
         {
             "name": "pawn-memory-windows-x86.zip",
