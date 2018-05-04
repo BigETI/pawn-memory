@@ -4,6 +4,7 @@
 
 ## Description
 The PAWN memory access plugin allows to allocate and free memory from heap in PAWN.
+Detailed documentation can be checked out at the [wiki](https://github.com/BigETI/pawn-memory/wiki).
 
 ## Installation
 ### Using sampctl
@@ -28,10 +29,10 @@ sampctl package install BigETI/pawn-memory
 - https://github.com/sampctl/pawn-stdlib
 
 ## Documentation
-The [documentation](https://github.com/BigETI/pawn-memory/blob/master/DOCUMENTATION.md) is located at [https://github.com/BigETI/pawn-memory/blob/master/DOCUMENTATION.md](https://github.com/BigETI/pawn-memory/blob/master/DOCUMENTATION.md)
+The [documentation](https://github.com/BigETI/pawn-memory/wiki) is located at [https://github.com/BigETI/pawn-memory/wiki](https://github.com/BigETI/pawn-memory/wiki)
 
 ## Licence
 You can find the [licence](https://github.com/BigETI/pawn-memory/blob/master/LICENCE.md) here: https://github.com/BigETI/pawn-memory/blob/master/LICENCE.md
 
-## How do I contribute?
-Just create a fork from this project, make your changes and create a pull request.
+## How to contribute to this project?
+Just create a fork out of this project, make your changes and create a pull request.
