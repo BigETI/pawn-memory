@@ -1,28 +1,44 @@
 #ifndef __PAWN_MEMORY_E_MEMORY_RESULT_H__
 #	define __PAWN_MEMORY_E_MEMORY_RESULT_H__
 
-// PAWN memory namespace
+/// <summary>
+/// PAWN memory namespace
+/// </summary>
 namespace PAWNMemory
 {
-	// Memory result enumerator
+	/// <summary>
+	/// Memory result enumerator
+	/// </summary>
 	enum EMemoryResult
 	{
-		// OK
+		/// <summary>
+		/// OK
+		/// </summary>
 		EMemoryResult_OK,
 
-		// Invalid size
+		/// <summary>
+		/// Invalid size
+		/// </summary>
 		EMemoryResult_InvalidSize,
 
-		// Invalid pointer
+		/// <summary>
+		/// Invalid pointer
+		/// </summary>
 		EMemoryResult_InvalidPointer,
 
-		// Invalid index
+		/// <summary>
+		/// Invalid index
+		/// </summary>
 		EMemoryResult_InvalidIndex,
 
-		// Invalid index and size
+		/// <summary>
+		/// Invalid index and size
+		/// </summary>
 		EMemoryResult_InvalidIndexSize,
 
-		// Out of memory
+		/// <summary>
+		/// Out of memory
+		/// </summary>
 		EMemoryResult_OutOfMemory
 	};
 }

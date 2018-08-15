@@ -1,13 +1,24 @@
 #include "ManagedMemory.h"
 #include <string.h>
 
-using namespace PAWNMemory;
 using namespace std;
+using namespace PAWNMemory;
 
+/// <summary>
+/// Pointers
+/// </summary>
 map<cell *, cell> ManagedMemory::pointers;
 
+/// <summary>
+/// Last result
+/// </summary>
 EMemoryResult ManagedMemory::lastResult(EMemoryResult_OK);
 
+/// <summary>
+/// New
+/// </summary>
+/// <param name="size">Size</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 cell * ManagedMemory::New(cell size)
 {
 	cell *ret(nullptr);
@@ -39,6 +50,11 @@ cell * ManagedMemory::New(cell size)
 	return ret;
 }
 
+/// <summary>
+/// New zero
+/// </summary>
+/// <param name="size">Size</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 cell * ManagedMemory::NewZero(cell size)
 {
 	cell *ret(nullptr);
@@ -71,6 +87,11 @@ cell * ManagedMemory::NewZero(cell size)
 	return ret;
 }
 
+/// <summary>
+/// New value
+/// </summary>
+/// <param name="val">Value</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 cell * ManagedMemory::NewValue(cell val)
 {
 	cell *ret(nullptr);
@@ -96,6 +117,12 @@ cell * ManagedMemory::NewValue(cell val)
 	return ret;
 }
 
+/// <summary>
+/// New array
+/// </summary>
+/// <param name="arr">Array</param>
+/// <param name="size">Size</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 cell * ManagedMemory::NewArray(cell * arr, cell size)
 {
 	cell *ret(nullptr);
@@ -128,6 +155,11 @@ cell * ManagedMemory::NewArray(cell * arr, cell size)
 	return ret;
 }
 
+/// <summary>
+/// Clone
+/// </summary>
+/// <param name="ptr">Pointer</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 cell * ManagedMemory::Clone(cell * ptr)
 {
 	cell *ret(nullptr);
@@ -161,6 +193,10 @@ cell * ManagedMemory::Clone(cell * ptr)
 	return ret;
 }
 
+/// <summary>
+/// Delete
+/// </summary>
+/// <param name="ptr">Pointer</param>
 void ManagedMemory::Delete(cell * ptr)
 {
 	map<cell *, cell>::iterator it(pointers.find(ptr));
@@ -176,12 +212,22 @@ void ManagedMemory::Delete(cell * ptr)
 	}
 }
 
+/// <summary>
+/// Is valid pointer
+/// </summary>
+/// <param name="ptr">Pointer</param>
+/// <returns>"true" if pointer is valid, otherwise "false"</returns>
 bool ManagedMemory::IsValidPointer(cell * ptr)
 {
 	lastResult = EMemoryResult_OK;
 	return (pointers.find(ptr) != pointers.end());
 }
 
+/// <summary>
+/// Get size
+/// </summary>
+/// <param name="ptr">Pointer</param>
+/// <returns>Size of allocated memory</returns>
 cell ManagedMemory::GetSize(cell * ptr)
 {
 	cell ret(0);
@@ -198,6 +244,9 @@ cell ManagedMemory::GetSize(cell * ptr)
 	return ret;
 }
 
+/// <summary>
+/// Clear
+/// </summary>
 void ManagedMemory::Clear()
 {
 	for (pair<cell *, cell> pointer : pointers)
@@ -208,6 +257,10 @@ void ManagedMemory::Clear()
 	lastResult = EMemoryResult_OK;
 }
 
+/// <summary>
+/// Get last result
+/// </summary>
+/// <returns>Last result</returns>
 EMemoryResult ManagedMemory::GetLastResult()
 {
 	EMemoryResult ret(lastResult);

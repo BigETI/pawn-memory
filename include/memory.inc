@@ -39,19 +39,19 @@ enum EMemoryResult
 	EMemoryResult_OutOfMemory
 }
 
-// Allocate new memory. Delete with `MEM_delete`
+// Allocate new memory. Delete with "MEM_delete"
 native Pointer:MEM_new(cells = 1);
 
-// Allocate new zeroed memory. Delete with `MEM_delete`
+// Allocate new zeroed memory. Delete with "MEM_delete"
 native Pointer:MEM_new_zero(cells = 1);
 
-// Allocate new value. Delete with `MEM_delete`
+// Allocate new value. Delete with "MEM_delete"
 native Pointer:MEM_new_val(value);
 
-// Allocate new array. Delete with `MEM_delete`
+// Allocate new array. Delete with "MEM_delete"
 native Pointer:MEM_new_arr(const arr[], arr_size = sizeof arr);
 
-// Clone memory. Delete with `MEM_delete`
+// Clone memory. Delete with "MEM_delete"
 native Pointer:MEM_clone(Pointer:pointer);
 
 // Delete allocated memory
@@ -84,34 +84,34 @@ native Pointer:MEM_zero(Pointer:pointer, size, index = 0);
 // Get last result
 native EMemoryResult:MEM_get_last_result();
 
-// Allocate new unmanaged memory. Delete with `MEM_UM_delete`
+// Allocate new unmanaged memory. Delete with "MEM_UM_delete"
 native UnmanagedPointer:MEM_UM_new(cells = 1);
 
-// Allocate new zeroed unmanaged memory. Delete with `MEM_UM_delete`
+// Allocate new zeroed unmanaged memory. Delete with "MEM_UM_delete"
 native UnmanagedPointer:MEM_UM_new_zero(cells = 1);
 
-// Allocate new unmanaged value. Delete with `MEM_UM_delete`
+// Allocate new unmanaged value. Delete with "MEM_UM_delete"
 native UnmanagedPointer:MEM_UM_new_val(value);
 
-// Allocate new unmanaged array. Delete with `MEM_UM_delete`
+// Allocate new unmanaged array. Delete with "MEM_UM_delete"
 native UnmanagedPointer:MEM_UM_new_arr(const arr[], arr_size = sizeof arr);
 
-// Clone unmanaged memory. Delete with `MEM_UM_delete`
+// Clone unmanaged memory. Delete with "MEM_UM_delete"
 native UnmanagedPointer:MEM_UM_clone(AnyPointer:pointer, index = 0, cells);
 
 // Delete unmanaged memory
 native MEM_UM_delete(UnmanagedPointer:pointer);
 
-// Get unmanaged value
+// Get value from unmanaged memory
 native MEM_UM_get_val(AnyPointer:pointer, index = 0);
 
-// Get unmanaged array
+// Get array from unmanaged memory
 native ForeignPointer:MEM_UM_get_arr(AnyPointer:pointer, index = 0, arr[], arr_size = sizeof arr);
 
-// Set unmanaged value
+// Set value at unmanaged memory
 native MEM_UM_set_val(UnmanagedPointer:pointer, index = 0, value);
 
-// Set unmanaged array
+// Set array at unmanaged memory
 native ForeignPointer:MEM_UM_set_arr(UnmanagedPointer:pointer, index = 0, const arr[], arr_size = sizeof arr);
 
 // Copy unmanaged memory

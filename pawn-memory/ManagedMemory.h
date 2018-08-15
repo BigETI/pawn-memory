@@ -7,62 +7,118 @@
 #	include "SDK/plugin.h"
 #	include "EMemoryResult.h"
 
-// PAWN memory namespace
+/// <summary>
+/// PAWN memory namespace
+/// </summary>
 namespace PAWNMemory
 {
-	// Managed memory class
+	/// <summary>
+	/// Managed memory class
+	/// </summary>
 	class ManagedMemory
 	{
 	private:
 
-		// Pointers
+		/// <summary>
+		/// Pointers
+		/// </summary>
 		static std::map<cell *, cell> pointers;
 
-		// Last result
+		/// <summary>
+		/// Last result
+		/// </summary>
 		static EMemoryResult lastResult;
 
-		// Default constructor
+		/// <summary>
+		/// Default constructor
+		/// </summary>
 		ManagedMemory();
 
-		// Copy constructor
+		/// <summary>
+		/// Copy constructor
+		/// </summary>
+		/// <param name=""></param>
 		ManagedMemory(const ManagedMemory &);
 
-		// Destructor
+		/// <summary>
+		/// Destructor
+		/// </summary>
 		~ManagedMemory();
 
-		// Assign operator
+		/// <summary>
+		/// Assign operator
+		/// </summary>
+		/// <param name=""></param>
+		/// <returns>This object</returns>
 		ManagedMemory & operator = (const ManagedMemory &);
 
 	public:
 
-		// New
+		/// <summary>
+		/// New
+		/// </summary>
+		/// <param name="size">Size</param>
+		/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 		static cell *New(cell size);
 
-		// New zero
+		/// <summary>
+		/// New zero
+		/// </summary>
+		/// <param name="size">Size</param>
+		/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 		static cell *NewZero(cell size);
 
-		// New value
+		/// <summary>
+		/// New value
+		/// </summary>
+		/// <param name="val">Value</param>
+		/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 		static cell *NewValue(cell val);
 
-		// New array
+		/// <summary>
+		/// New array
+		/// </summary>
+		/// <param name="arr">Array</param>
+		/// <param name="size">Size</param>
+		/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 		static cell *NewArray(cell * arr, cell size);
 
-		// Clone
+		/// <summary>
+		/// Clone
+		/// </summary>
+		/// <param name="ptr">Pointer</param>
+		/// <returns>Pointer of allocated memory if successful, otherwise "nullptr"</returns>
 		static cell *Clone(cell * ptr);
 
-		// Delete
+		/// <summary>
+		/// Delete
+		/// </summary>
+		/// <param name="ptr">Pointer</param>
 		static void Delete(cell * ptr);
 
-		// Is valid pointer
+		/// <summary>
+		/// Is valid pointer
+		/// </summary>
+		/// <param name="ptr">Pointer</param>
+		/// <returns>"true" if pointer is valid, otherwise "false"</returns>
 		static bool IsValidPointer(cell * ptr);
 
-		// Get size
+		/// <summary>
+		/// Get size
+		/// </summary>
+		/// <param name="ptr">Pointer</param>
+		/// <returns>Size of allocated memory</returns>
 		static cell GetSize(cell * ptr);
 
-		// Clear
+		/// <summary>
+		/// Clear
+		/// </summary>
 		static void Clear();
 
-		// Get last result
+		/// <summary>
+		/// Get last result
+		/// </summary>
+		/// <returns>Last result</returns>
 		static EMemoryResult GetLastResult();
 	};
 }

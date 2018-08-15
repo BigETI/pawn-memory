@@ -5,17 +5,25 @@
 #include "ManagedMemory.h"
 #include <string.h>
 
-using namespace PAWNMemory;
 using namespace std;
+using namespace PAWNMemory;
 
 typedef void(*logprintf_t)(char *format, ...);
 logprintf_t logprintf;
 extern void *pAMXFunctions;
 
-// Last result
+/// <summary>
+/// Last result
+/// </summary>
 static EMemoryResult lastResult(EMemoryResult_OK);
 
-// Number of arguments are equal
+/// <summary>
+/// Number of arguments are equal
+/// </summary>
+/// <param name="params">Params</param>
+/// <param name="expectedCount">Expected count of params</param>
+/// <param name="functionName">FUnction name</param>
+/// <returns>"true if number of params match with expected count of params, otherwise "false"</returns>
 inline bool NumArgsEqual(cell *params, cell expectedCount, const char *functionName)
 {
 
@@ -27,7 +35,13 @@ inline bool NumArgsEqual(cell *params, cell expectedCount, const char *functionN
 	return ret;
 }
 
-// Pointer:MEM_new(cells = 1)
+/// <summary>
+/// Allocate new memory. Delete with "MEM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_new(cells = 1)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_new(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -39,7 +53,13 @@ cell AMX_NATIVE_CALL AMX_MEM_new(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_new_zero(cells = 1)
+/// <summary>
+/// Allocate new zeroed memory. Delete with "MEM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_new_zero(cells = 1)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_new_zero(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -51,7 +71,13 @@ cell AMX_NATIVE_CALL AMX_MEM_new_zero(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_new_val(value)
+/// <summary>
+/// Allocate new value. Delete with "MEM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_new_val(value)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_new_val(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -63,7 +89,13 @@ cell AMX_NATIVE_CALL AMX_MEM_new_val(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_new_arr(const arr[], arr_size = sizeof arr)
+/// <summary>
+/// Allocate new array. Delete with "MEM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_new_arr(const arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_new_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -77,7 +109,13 @@ cell AMX_NATIVE_CALL AMX_MEM_new_arr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_clone(Pointer:pointer)
+/// <summary>
+/// Clone memory. Delete with "MEM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_clone(Pointer:pointer)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_clone(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -89,7 +127,13 @@ cell AMX_NATIVE_CALL AMX_MEM_clone(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// MEM_delete(Pointer:pointer)
+/// <summary>
+/// Delete allocated memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Nothing</returns>
+/// <remarks>MEM_delete(Pointer:pointer)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_delete(AMX *amx, cell *params)
 {
 	if (NumArgsEqual(params, 1, "MEM_delete"))
@@ -100,7 +144,13 @@ cell AMX_NATIVE_CALL AMX_MEM_delete(AMX *amx, cell *params)
 	return 0;
 }
 
-// bool:MEM_is_valid_ptr(Pointer:pointer)
+/// <summary>
+/// Is valid pointer
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>"true" if pointer is valid, otherwise "false"</returns>
+/// <remarks>bool:MEM_is_valid_ptr(Pointer:pointer)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_is_valid_ptr(AMX *amx, cell *params)
 {
 	bool ret(false);
@@ -112,7 +162,13 @@ cell AMX_NATIVE_CALL AMX_MEM_is_valid_ptr(AMX *amx, cell *params)
 	return ret;
 }
 
-// MEM_get_size(Pointer:pointer)
+/// <summary>
+/// Get size
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Size in cells of allocated memory if successful, otherwise "0"</returns>
+/// <remarks>MEM_get_size(Pointer:pointer)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_get_size(AMX *amx, cell *params)
 {
 	cell ret(0);
@@ -124,7 +180,13 @@ cell AMX_NATIVE_CALL AMX_MEM_get_size(AMX *amx, cell *params)
 	return ret;
 }
 
-// MEM_get_val(Pointer:pointer, index = 0)
+/// <summary>
+/// Get value
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Value from allocated memory if successful, otherwise "0"</returns>
+/// <remarks>MEM_get_val(Pointer:pointer, index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_get_val(AMX *amx, cell *params)
 {
 	cell ret(0);
@@ -134,17 +196,10 @@ cell AMX_NATIVE_CALL AMX_MEM_get_val(AMX *amx, cell *params)
 		cell size(ManagedMemory::GetSize(ptr));
 		if (size > 0)
 		{
-			if (params[2] >= 0)
+			if ((params[2] >= 0) && (params[2] < size))
 			{
-				if (params[2] < size)
-				{
-					ret = ptr[params[2]];
-					lastResult = EMemoryResult_OK;
-				}
-				else
-				{
-					lastResult = EMemoryResult_InvalidIndex;
-				}
+				ret = ptr[params[2]];
+				lastResult = EMemoryResult_OK;
 			}
 			else
 			{
@@ -159,7 +214,13 @@ cell AMX_NATIVE_CALL AMX_MEM_get_val(AMX *amx, cell *params)
 	return ret;
 }
 
-// ForeignPointer:MEM_get_arr(Pointer:pointer, index = 0, arr[], arr_size = sizeof arr)
+/// <summary>
+/// Get array
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of array if successful, otherwise "MEM_NULLFEPTR"</returns>
+/// <remarks>ForeignPointer:MEM_get_arr(Pointer:pointer, index = 0, arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_get_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -170,11 +231,18 @@ cell AMX_NATIVE_CALL AMX_MEM_get_arr(AMX *amx, cell *params)
 		{
 			if (params[2] >= 0)
 			{
-				if ((params[4] > 0) && ((params[4] + params[2]) <= size))
+				if (params[4] > 0)
 				{
-					amx_GetAddr(amx, params[3], &ret);
-					memcpy(ret, reinterpret_cast<cell *>(params[1] + (params[2] * sizeof(cell))), params[4] * sizeof(cell));
-					lastResult = EMemoryResult_OK;
+					if ((params[4] + params[2]) <= size)
+					{
+						amx_GetAddr(amx, params[3], &ret);
+						memcpy(ret, reinterpret_cast<cell *>(params[1] + (params[2] * sizeof(cell))), params[4] * sizeof(cell));
+						lastResult = EMemoryResult_OK;
+					}
+					else
+					{
+						lastResult = EMemoryResult_InvalidIndexSize;
+					}
 				}
 				else
 				{
@@ -194,7 +262,13 @@ cell AMX_NATIVE_CALL AMX_MEM_get_arr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// MEM_set_val(Pointer:pointer, index = 0, value)
+/// <summary>
+/// Set value
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Value if successful, otherwise "0"</returns>
+/// <remarks>MEM_set_val(Pointer:pointer, index = 0, value)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_set_val(AMX *amx, cell *params)
 {
 	cell ret(0);
@@ -204,9 +278,16 @@ cell AMX_NATIVE_CALL AMX_MEM_set_val(AMX *amx, cell *params)
 		cell size(ManagedMemory::GetSize(ptr));
 		if (size > 0)
 		{
-			ptr[params[2]] = params[3];
-			ret = params[3];
-			lastResult = EMemoryResult_OK;
+			if ((params[2] >= 0) && (params[2] < size))
+			{
+				ptr[params[2]] = params[3];
+				ret = params[3];
+				lastResult = EMemoryResult_OK;
+			}
+			else
+			{
+				lastResult = EMemoryResult_InvalidIndex;
+			}
 		}
 		else
 		{
@@ -216,41 +297,61 @@ cell AMX_NATIVE_CALL AMX_MEM_set_val(AMX *amx, cell *params)
 	return ret;
 }
 
-// UnmanagedPointer:MEM_set_arr(Pointer:pointer, index = 0, const arr[], arr_size = sizeof arr)
+/// <summary>
+/// Set array
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of array if successful, otherwise "MEM_NULLFEPTR"</returns>
+/// <remarks>ForeignPointer:MEM_set_arr(Pointer:pointer, index = 0, const arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_set_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
-	if (NumArgsEqual(params, 4, "MEM_set_val"))
+	if (NumArgsEqual(params, 4, "MEM_set_arr"))
 	{
-		if (params[2] >= 0)
+		cell size(ManagedMemory::GetSize(reinterpret_cast<cell *>(params[1])));
+		if (size > 0)
 		{
-			if (params[4] > 0)
+			if ((params[2] >= 0) && (params[2] < params[4]))
 			{
-				if (params[2] < params[4])
+				if (params[4] > 0)
 				{
-					amx_GetAddr(amx, params[3], &ret);
-					memcpy(reinterpret_cast<cell *>(params[1] + (params[2] * sizeof(cell))), ret, params[4] * sizeof(cell));
-					lastResult = EMemoryResult_OK;
+					if ((params[4] + params[2]) <= size)
+					{
+						amx_GetAddr(amx, params[3], &ret);
+						memcpy(reinterpret_cast<cell *>(params[1] + (params[2] * sizeof(cell))), ret, params[4] * sizeof(cell));
+						lastResult = EMemoryResult_OK;
+					}
+					else
+					{
+						lastResult = EMemoryResult_InvalidIndexSize;
+					}
 				}
 				else
 				{
-					lastResult = EMemoryResult_InvalidIndex;
+					lastResult = EMemoryResult_InvalidSize;
 				}
 			}
 			else
 			{
-				lastResult = EMemoryResult_InvalidSize;
+				lastResult = EMemoryResult_InvalidIndex;
 			}
 		}
 		else
 		{
-			lastResult = EMemoryResult_InvalidIndex;
+			lastResult = ManagedMemory::GetLastResult();
 		}
 	}
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_copy(Pointer:dest, Pointer:src, size, dest_index = 0, src_index = 0)
+/// <summary>
+/// Copy memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of destination if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_copy(Pointer:dest, Pointer:src, size, dest_index = 0, src_index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_copy(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -292,7 +393,13 @@ cell AMX_NATIVE_CALL AMX_MEM_copy(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// Pointer:MEM_zero(Pointer:pointer, size, index = 0)
+/// <summary>
+/// Zero memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of destination if successful, otherwise "MEM_NULLPTR"</returns>
+/// <remarks>Pointer:MEM_zero(Pointer:pointer, size, index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_zero(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -333,7 +440,13 @@ cell AMX_NATIVE_CALL AMX_MEM_zero(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// EMemoryResult:MEM_get_last_result()
+/// <summary>
+/// Get last result
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Last result</returns>
+/// <remarks>EMemoryResult:MEM_get_last_result()</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_get_last_result(AMX *amx, cell *params)
 {
 	EMemoryResult ret(lastResult);
@@ -341,7 +454,13 @@ cell AMX_NATIVE_CALL AMX_MEM_get_last_result(AMX *amx, cell *params)
 	return ret;
 }
 
-// UnmanagedPointer:MEM_UM_new(cells = 1)
+/// <summary>
+/// Allocate new unmanaged memory. Delete with "MEM_UM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_new(cells = 1)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_new(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -352,14 +471,7 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_new(AMX *amx, cell *params)
 			try
 			{
 				ret = new cell[params[1]];
-				if (ret != nullptr)
-				{
-					lastResult = EMemoryResult_OK;
-				}
-				else
-				{
-					lastResult = EMemoryResult_OutOfMemory;
-				}
+				lastResult = (ret ? EMemoryResult_OK : EMemoryResult_OutOfMemory);
 			}
 			catch (...)
 			{
@@ -375,7 +487,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_new(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_new_zero(cells = 1)
+/// <summary>
+/// Allocate new zeroed unmanaged memory. Delete with "MEM_UM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_new_zero(cells = 1)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_new_zero(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -410,7 +528,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_new_zero(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_new_val(value)
+/// <summary>
+/// Allocate new unmanaged value. Delete with "MEM_UM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_new_val(value)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_new_val(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -438,7 +562,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_new_val(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_new_arr(const arr[], arr_size = sizeof arr)
+/// <summary>
+/// Allocate new unmanaged array. Delete with "MEM_UM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_new_arr(const arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_new_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -475,7 +605,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_new_arr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_clone(AnyPointer:pointer, index = 0, cells)
+/// <summary>
+/// Clone unmanaged memory. Delete with "MEM_UM_delete"
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of allocated memory if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_clone(AnyPointer:pointer, index = 0, cells)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_clone(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -524,7 +660,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_clone(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// MEM_UM_delete(UnmanagedPointer:pointer)
+/// <summary>
+/// Delete unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Nothing</returns>
+/// <remarks>MEM_UM_delete(UnmanagedPointer:pointer)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_delete(AMX *amx, cell *params)
 {
 	if (NumArgsEqual(params, 1, "MEM_UM_delete"))
@@ -535,7 +677,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_delete(AMX *amx, cell *params)
 	return 0;
 }
 
-// MEM_UM_get_val(AnyPointer:pointer, index = 0)
+/// <summary>
+/// Get value from unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Value if successful, otherwise "0"</returns>
+/// <remarks>MEM_UM_get_val(AnyPointer:pointer, index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_get_val(AMX *amx, cell *params)
 {
 	cell ret(0);
@@ -562,7 +710,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_get_val(AMX *amx, cell *params)
 	return ret;
 }
 
-// UnmanagedPointer:MEM_UM_get_arr(AnyPointer:pointer, index = 0, arr[], arr_size = sizeof arr)
+/// <summary>
+/// Get array from unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of array if successful, otherwise "MEM_NULLFEPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_get_arr(AnyPointer:pointer, index = 0, arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_get_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -597,7 +751,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_get_arr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// MEM_UM_set_val(UnmanagedPointer:pointer, index = 0, value)
+/// <summary>
+/// Set value at unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Value if successful, otherwise "0"</returns>
+/// <remarks>MEM_UM_set_val(UnmanagedPointer:pointer, index = 0, value)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_set_val(AMX *amx, cell *params)
 {
 	cell ret(0);
@@ -624,7 +784,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_set_val(AMX *amx, cell *params)
 	return ret;
 }
 
-// ForeignPointer:MEM_UM_set_arr(UnmanagedPointer:pointer, index = 0, const arr[], arr_size = sizeof arr)
+/// <summary>
+/// Set array at unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of array if successful, otherwise "MEM_NULLFEPTR"</returns>
+/// <remarks>ForeignPointer:MEM_UM_set_arr(UnmanagedPointer:pointer, index = 0, const arr[], arr_size = sizeof arr)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_set_arr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -659,7 +825,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_set_arr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_copy(UnmanagedPointer:dest, AnyPointer:src, size, dest_index = 0, src_index = 0)
+/// <summary>
+/// Copy unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of destination if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_copy(UnmanagedPointer:dest, AnyPointer:src, size, dest_index = 0, src_index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_copy(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -692,7 +864,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_copy(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// UnmanagedPointer:MEM_UM_zero(UnmanagedPointer:pointer, size, index = 0)
+/// <summary>
+/// Zero unmanaged memory
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of destination if successful, otherwise "MEM_NULLUMPTR"</returns>
+/// <remarks>UnmanagedPointer:MEM_UM_zero(UnmanagedPointer:pointer, size, index = 0)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_zero(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -725,7 +903,13 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_zero(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// ForeignPointer:MEM_UM_get_addr(&var)
+/// <summary>
+/// Get pointer of variable
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>Pointer of variable if successful, otherwise "MEM_NULLFEPTR"</returns>
+/// <remarks>ForeignPointer:MEM_UM_get_addr(&var)</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_get_addr(AMX *amx, cell *params)
 {
 	cell *ret(nullptr);
@@ -737,20 +921,33 @@ cell AMX_NATIVE_CALL AMX_MEM_UM_get_addr(AMX *amx, cell *params)
 	return reinterpret_cast<cell>(ret);
 }
 
-// ForeignPointer:MEM_UM_get_amx_ptr()
+/// <summary>
+/// Get AMX pointer
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <param name="params">Params</param>
+/// <returns>AMX pointer</returns>
+/// <remarks>ForeignPointer:MEM_UM_get_amx_ptr()</remarks>
 cell AMX_NATIVE_CALL AMX_MEM_UM_get_amx_ptr(AMX *amx, cell *params)
 {
 	lastResult = EMemoryResult_OK;
 	return reinterpret_cast<cell>(amx);
 }
 
-// Supports
+/// <summary>
+/// Plugin supports
+/// </summary>
+/// <returns>Plugin supports flags</returns>
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES;
 }
 
-// Load
+/// <summary>
+/// Load plugin
+/// </summary>
+/// <param name="ppData">Plugin data</param>
+/// <returns>"true" if successful, otherwise "false"</returns>
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 {
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
@@ -763,7 +960,9 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	return true;
 }
 
-// Unload
+/// <summary>
+/// Plugin unload
+/// </summary>
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
 	ManagedMemory::Clear();
@@ -774,7 +973,9 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload()
 	logprintf("========================");
 }
 
-// Plugin natives
+/// <summary>
+/// Plugin natives
+/// </summary>
 AMX_NATIVE_INFO PluginNatives[] =
 {
 	{ "MEM_new", AMX_MEM_new },
@@ -811,13 +1012,21 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{0, 0}
 };
 
-// AMX load
+/// <summary>
+/// AMX load
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <returns>Return value of "amx_Register"</returns>
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
 	return amx_Register(amx, PluginNatives, -1);
 }
 
-// AMX unload
+/// <summary>
+/// AMX unload
+/// </summary>
+/// <param name="amx">AMX</param>
+/// <returns>Error code</returns>
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 {
 	return AMX_ERR_NONE;
