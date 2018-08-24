@@ -3,7 +3,7 @@
     "repo": "pawn-memory",
     "entry": "test/memorytest.pwn",
     "output": "test/memorytest.amx",
-    "dependencies": ["Southclaws/samp-stdlib"],
+    "dependencies": ["sampctl/pawn-stdlib"],
     "include_path": "include",
     "builds": [
         {
